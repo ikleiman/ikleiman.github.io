@@ -1,1 +1,35 @@
-hola
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WB</title>
+  </head>
+
+  
+<form>
+  
+  <button>Get Bluetooth Device Info</button>
+</form>
+
+
+<script>
+  log = ChromeSamples.log;
+  ChromeSamples.setStatus('Log');
+
+  function isWebBluetoothEnabled() {
+    if (navigator.bluetooth) {
+      return true;
+    } else {
+      ChromeSamples.setStatus('Web Bluetooth API is not available.\n' +
+          'Please make sure the "Experimental Web Platform features" flag is enabled.');
+      return false;
+    }
+  }
+</script>
+
+
+
+
+
+</html>
