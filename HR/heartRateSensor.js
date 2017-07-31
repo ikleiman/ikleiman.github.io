@@ -18,9 +18,9 @@
       .then(server => {
         this.server = server;
         return Promise.all([
-          server.getPrimaryService('heart_rate').then(service => {
+          server.getPrimaryService('11223344-5566-7788-9900-aabbccddeeff').then(service => {
             return Promise.all([
-              this._cacheCharacteristic(service, 'body_sensor_location'),
+              this._cacheCharacteristic(service, '12345678-9012-3456-7890-123456789011'),
               this._cacheCharacteristic(service, 'heart_rate_measurement'),
             ])
           })
