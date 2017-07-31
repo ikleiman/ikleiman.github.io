@@ -8,7 +8,9 @@
       this._characteristics = new Map();
     }
     connect() {
-      return navigator.bluetooth.requestDevice({filters:[{services:[ 'heart_rate' ]}]})
+      let options = {};
+      options.acceptAllDevices = true;
+      return navigator.bluetooth.requestDevice(options)
       .then(device => {
         this.device = device;
         return device.gatt.connect();
