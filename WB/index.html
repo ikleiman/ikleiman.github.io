@@ -28,21 +28,6 @@ function myFunction1() {
   .then(device => {
   	document.getElementById("valor1").innerHTML = device.name;
   })
-  .then(server => {
-  // Getting Service...
-  return server.getPrimaryService(11223344-5566-7788-9900-aabbccddeeff);
-})
-.then(service => {
-  // Getting Battery Level Characteristic...
-  return service.getCharacteristic(characteristicUuid);
-})
-.then(characteristic => {
-  // Reading Battery Level...
-  return characteristic.readValue();
-})
-.then(value => {
-	document.getElementById("valor1").innerHTML = value.getUint8(0);
-})
 .catch(error => { document.getElementById("valor1").innerHTML = error;});
  
 
