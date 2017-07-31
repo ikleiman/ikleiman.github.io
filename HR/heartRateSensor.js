@@ -10,7 +10,7 @@
     connect() {
       let options = {};
       options.acceptAllDevices = true;
-      return navigator.bluetooth.requestDevice(options)
+      return navigator.bluetooth.requestDevice({ filters: [{ services: ['11223344-5566-7788-9900-aabbccddeeff'] }] })
       .then(device => {
         this.device = device;
         return device.gatt.connect();
