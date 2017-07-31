@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-Valor 1: <p id="valor1" >0</p>
-<p id="b1" onclick="myFunction1()">Obener Valor11.</p>
+<p id="b1" onclick="myFunction1()">Click para obtener Información.</p>
 
 
-Valor 2: <p id="valor2" >0</p>
-<p id="b2" onclick="myFunction2()">Obener Valor2.</p>
+
+Nombre Bluetooth: <p id="valor1" >0</p>
 
 
-Valor 3: <p id="valor3" >0</p>
-<p id="b3" onclick="myFunction3()">Obener Valor3.</p>
+Valor Pedal: <p id="valor2" >0</p>
+
+
+Si hay errores aparecerán aqui abajo: <p id="error" ></p>
 
 <script>
 function myFunction1() {
@@ -22,13 +22,34 @@ function myFunction1() {
     let characteristicUuid = '12345678-9012-3456-7890-123456789011';
 
     navigator.bluetooth.requestDevice({
-  acceptAllDevices: true,
-  optionalServices: ['11223344-5566-7788-9900-aabbccddeeff']
+  filters: [{
+    services: ['11223344-5566-7788-9900-aabbccddeeff']
+  }]
 })
   .then(device => {
-  	document.getElementById("valor1").innerHTML = device.name;
+    this.device = device;
+    device.gatt.connect();
+    document.getElementById("valor1").innerHTML = device.name;
   })
-.catch(error => { document.getElementById("valor1").innerHTML = error;});
+  .then(server => {
+   //this.server = server;
+  // Getting Service...
+  return
+ server.getPrimaryService('11223344-5566-7788-9900-aabbccddeeff')
+})
+.then(service => {
+   this.service = service;
+  // Getting Battery Level Characteristic...
+  return service.getCharacteristic('12345678-9012-3456-7890-123456789011');
+})
+.then(characteristic => {
+  // Reading Battery Level...
+  return characteristic.readValue(serviceUuid);
+})
+.then(value => {
+	document.getElementById("valor2").innerHTML = value.getUint8(0);
+})
+.catch(error => { document.getElementById("error").innerHTML = error;});
  
 
 }
