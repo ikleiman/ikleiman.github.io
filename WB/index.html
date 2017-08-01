@@ -37,8 +37,10 @@ function myFunction1() {
    //this.server = server;
   // Getting Service...
 	    console.log(server);
+    var serv = server.getPrimaryService('11223344-5566-7788-9900-aabbccddeeff');
+	    console.log(serv);
   return
- server.getPrimaryService('11223344-5566-7788-9900-aabbccddeeff')
+ serv
 })
 .then(service => {
    //this.service = service;
