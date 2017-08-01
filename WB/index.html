@@ -28,6 +28,7 @@ function myFunction1() {
 })
   .then(device => {
     //this.device = device;
+	  console.log(device);  
     var device2 = device.gatt.connect();
     document.getElementById("valor1").innerHTML = device.name;
     return device2;
@@ -35,12 +36,14 @@ function myFunction1() {
   .then(server => {
    //this.server = server;
   // Getting Service...
+	    console.log(server);
   return
  server.getPrimaryService('11223344-5566-7788-9900-aabbccddeeff')
 })
 .then(service => {
    //this.service = service;
   // Getting Battery Level Characteristic...
+	    console.log(service);
   return service.getCharacteristic('12345678-9012-3456-7890-123456789011');
 })
 .then(characteristic => {
