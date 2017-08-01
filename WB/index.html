@@ -38,7 +38,10 @@ function myFunction1() {
   // Getting Service...
 	    console.log(server);
     var serv = server.getPrimaryService('11223344-5566-7788-9900-aabbccddeeff');
+	    
 	    console.log(serv);
+     var char = serv.getCharacteristic('12345678-9012-3456-7890-123456789011');
+	    console.log(char);
   return
  serv
 })
